@@ -7,6 +7,8 @@ const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose')
 const cors = require('cors');
+const loginRouter = require('./routes/login');
+const signupRouter = require('./routes/signup');
 
 //변수 설정
 const PORT = process.env.PORT || 3001;
@@ -54,6 +56,9 @@ const health = async (req, res) => {
 
 app.use(cors());
 app.get('/health', health);
+app.get('/login', loginRouter);
+app.get('/signup', signupRouter)
+
 //error 처리
 app.use((err, req, res, next) => {
     console.log(err);
